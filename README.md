@@ -44,6 +44,37 @@ const RectangleManager = React.createClass({
 });
 ```
 
+## MyApp component
+Both `Rectangle` and `RectangleManager` are wrapped in a `MyApp` component. This component manages the state of the application, i.e. the current color of the square.
+
+The `RectangleManager` informs the `MyApp` component when the color has changed through a callback function. When this happens, the `MyApp` components changes its state to the current color, which incidently updates the `Rectangle` and `RectangleManager` `color` property.
+
+```JSX
+const MyApp = React.createClass({
+	render() {
+		return (
+			<div>
+				<RectangleManager
+					color={this.state.currentColor}
+					onChange={this.handleChange}
+				/>
+				<br />
+				<Rectangle color={this.state.currentColor} />
+			</div>
+		);
+	},
+	
+	getInitialState() {
+		return {currentColor: 'red'};
+	},
+
+	handleChange(newColor) {
+		this.setState({currentColor: newColor});
+	}
+});
+
+```
+
 ## Usage
 1. `npm install`
 2. `npm run build`
