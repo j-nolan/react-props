@@ -7,21 +7,32 @@ const MyApp = React.createClass({
 	render() {
 		return (
 			<div>
+				<RectangleManager
+					color={this.state.currentColor}
+					onChange={this.handleChange}
+				/>
+				<br />
 				<Rectangle color={this.state.currentColor} />
-				<RectangleMananger color={this.state.currentColor} />
 			</div>
 		);
 	},
 	
 	getInitialState() {
 		return {currentColor: 'red'};
+	},
+
+	handleChange(newColor) {
+		this.setState({currentColor: newColor});
 	}
 });
 
 // Le rectangle est un simple div de taille fixe, et dont la couleur est donnée par propriété
 const Rectangle = React.createClass({
 	render() {
-		return <div style={{width: "100px", height: "100px", backgroundColor: this.props.color}}></div>
+		return <div style={{
+			width: "100px",
+			height: "100px",
+			backgroundColor: this.props.color}}></div>
 	}
 });
 
@@ -31,7 +42,12 @@ const RectangleManager = React.createClass({
 	render() {
 		return (
 			<form>
-				<input type="text" value={this.props.color} onChange={this.colorChangeHandler} />
+				<label>Color:</label>
+				<input
+					type="text"
+					value={this.props.color}
+					onChange={this.colorChangeHandler}
+				/>
 			</form>
 		)
 	},
@@ -39,7 +55,8 @@ const RectangleManager = React.createClass({
 	colorChangeHandler(e) {
 		const newColor = e.target.value;
 		// Comment transmettre la nouvelle couleur au parent ?
-		// ...
+		// méthode du callback :
+		this.props.onChange.call(null, newColor);
 	}
 });
 
