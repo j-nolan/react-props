@@ -81,12 +81,12 @@
 	});
 
 	// Le rectangle est un simple div de taille fixe, et dont la couleur est donnée par propriété
-	var Rectangle = _react2.default.createClass({
-		displayName: 'Rectangle',
-		render: function render() {
-			return _react2.default.createElement('div', { style: { width: "100px", height: "100px", backgroundColor: this.props.color } });
-		}
-	});
+	var Rectangle = function Rectangle(props) {
+		_react2.default.createElement('div', { style: {
+				width: "100px",
+				height: "100px",
+				backgroundColor: props.color } });
+	};
 
 	// Le formulaire n'a pour l'instant qu'un seul champ, qui permet à l'utilisateur de taper la couleur
 	// qu'il souhaite donner au rectangle
@@ -104,14 +104,15 @@
 				_react2.default.createElement('input', {
 					type: 'text',
 					value: this.props.color,
-					onChange: this.colorChangeHandler })
+					onChange: this.colorChangeHandler
+				})
 			);
 		},
 		colorChangeHandler: function colorChangeHandler(e) {
 			var newColor = e.target.value;
-			// Comment transmettre la nouvelle couleur au parent ?
-			// méthode du callback :
-			this.props.onChange.call(null, newColor);
+			// How to communicate the new color to the parent component?
+			// Using the callback method:
+			this.props.onChange(newColor);
 		}
 	});
 

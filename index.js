@@ -27,14 +27,12 @@ const MyApp = React.createClass({
 });
 
 // Le rectangle est un simple div de taille fixe, et dont la couleur est donnée par propriété
-const Rectangle = React.createClass({
-	render() {
-		return <div style={{
-			width: "100px",
-			height: "100px",
-			backgroundColor: this.props.color}}></div>
-	}
-});
+const Rectangle = (props) => {
+	return <div style={{
+		width: "100px",
+		height: "100px",
+		backgroundColor: props.color}}></div>
+}
 
 // Le formulaire n'a pour l'instant qu'un seul champ, qui permet à l'utilisateur de taper la couleur
 // qu'il souhaite donner au rectangle
@@ -54,9 +52,9 @@ const RectangleManager = React.createClass({
 
 	colorChangeHandler(e) {
 		const newColor = e.target.value;
-		// Comment transmettre la nouvelle couleur au parent ?
-		// méthode du callback :
-		this.props.onChange.call(null, newColor);
+		// How to communicate the new color to the parent component?
+		// Using the callback method:
+		this.props.onChange(newColor);
 	}
 });
 

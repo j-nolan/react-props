@@ -1,6 +1,6 @@
 # Child-parent communication in React.js
 
-Sending data from a component to it's parent can be messy in `React.js`. This document discusses the issue using a basic example.
+Sending data from a component to it's parent can be messy in React.js. This document discusses the issue using a basic example.
 
 ## Goal
 To show the problem, we are going to build a very basic application. The app should display a rectangle whose color can be changed by the user through an input field.
@@ -23,11 +23,12 @@ In this section, we will code our components. The whole application can be ran a
 The `Rectangle` component is a simple div of fixed dimension. Its color depends on the `color` props that is passed to him.
 
 ```JSX
-const Rectangle = React.createClass({
-	render() {
-		return <div style={{width: "100px", height: "100px", backgroundColor: this.props.color}}></div>
-	}
-});
+const Rectangle = (props) => {
+	return <div style={{
+		width: "100px",
+		height: "100px",
+		backgroundColor: props.color}}></div>
+}
 ```
 
 ### RectangleManager component
@@ -53,7 +54,7 @@ const RectangleManager = React.createClass({
 	colorChangeHandler(e) {
 		const newColor = e.target.value;
 		// Communicate new color to parent through the provided callback
-		this.props.onChange.call(null, newColor);
+		this.props.onChange(newColor);
 	}
 });
 ```
