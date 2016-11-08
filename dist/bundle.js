@@ -82,7 +82,7 @@
 
 	// Le rectangle est un simple div de taille fixe, et dont la couleur est donnée par propriété
 	var Rectangle = function Rectangle(props) {
-		_react2.default.createElement('div', { style: {
+		return _react2.default.createElement('div', { style: {
 				width: "100px",
 				height: "100px",
 				backgroundColor: props.color } });

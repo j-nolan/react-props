@@ -15,6 +15,7 @@ Both `Rectangle` and `RectangleManager` get their initial color value through th
 
 ## Components
 In this section, we will code our components. The whole application can be ran and played with using the following commands:
+
 1. `npm install` (install dependencies)
 2. `npm run build` (compile source using webpack. Must be done after every change)
 3. Open `dist/index.html` in the browser
